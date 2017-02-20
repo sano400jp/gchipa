@@ -1,0 +1,32 @@
+■SQLite
+□起動
+sqlite3 db/development.sqlite3
+
+■webSocket
+□設定
+①Gemfile追加
+--------------------------------
+gem 'websocket-rails'
+--------------------------------
+
+②faye-websocketのバージョンを下げてbundle install
+・Gemfile.lock
+--------------------------------
+faye-websocket (0.10.0)
+  eventmachine (>= 0.12.0)
+  websocket-driver (>= 0.5.1)
+--------------------------------
+
+③インストール
+--------------------------------
+rails g websocket_rails:install
+--------------------------------
+
+④config/environments/development.rb
+--------------------------------
+config.middleware.delete Rack::Lock
+config.web_console.whitelisted_ips = '0.0.0.0/0'
+--------------------------------
+
+■[資料] id以外を使いたい
+http://totech.hateblo.jp/entry/2015/12/19/205018
